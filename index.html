@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monster Chase</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game">
+    <div id="runner" class="runner"></div>
+    <div id="monster" class="monster"></div>
+    <div id="message"></div>
+
+    <!-- START SCREEN -->
+    <div id="startScreen">
+      <h2>🏃 Monster Chase 🐉</h2>
+      <p>Rules:</p>
+      <ul style="text-align:left;">
+        <li>Use ⬅️ ➡️ to move between lanes</li>
+        <li>Long Press ⬆️ to Jump (over Rocks and Fire)</li>
+        <li>Long Press ⬇️ to Slide (under bars)</li>
+        <li>Catch the Runner when he stumbles!</li>
+      </ul>
+      <button id="startBtn">Start Game</button>
+    </div>
+
+    <!-- RESTART BUTTON -->
+    <button id="restartBtn">Restart</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

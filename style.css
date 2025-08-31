@@ -1,0 +1,137 @@
+#startScreen {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 70%;
+}
+
+#startScreen button,
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  background: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+#restartBtn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body {
+  margin: 0;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#game {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  background: url("Assets/7.png") repeat-y center/cover;
+  border: 3px solid #fff;
+  overflow: hidden;
+  animation: scroll-bg 3s linear infinite;
+}
+
+@keyframes scroll-bg {
+  from { background-position-y: 0; }
+  to   { background-position-y: 600px; }
+}
+
+.runner, .monster {
+  position: absolute;
+  bottom: 70px;
+  width: 80px;
+  height: 100px;
+  transition: all 0.2s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.runner {
+  background: url("Assets/1.png") no-repeat center/cover;
+  z-index: 3; /* runner always visible */
+}
+
+.monster {
+  background: url("Assets/2.png") no-repeat center/cover;
+  bottom: 120px;
+  z-index: 2; /* behind runner */
+}
+
+.obstacle {
+  position: absolute;
+  width: 90px;
+  height: 100px;
+  top: -100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Rock (jump only) */
+.jump-only {
+  background: url("Assets/3.png") no-repeat center/contain;
+  height: 90px;
+}
+
+/* Hanging bar (slide only) */
+.slide-only {
+  background: url("Assets/5.png") no-repeat center/contain;
+  height: 60px;
+  top: -80px;
+}
+
+/* Fire (jump required) */
+.jump-or-slide {
+  background: url("Assets/4.png") no-repeat center/contain;
+  height: 100px;
+}
+
+#message {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+/* Animations */
+.jump {
+  animation: jump 0.6s ease;
+}
+@keyframes jump {
+  0% { bottom: 120px; }
+  50% { bottom: 220px; }
+  100% { bottom: 120px; }
+}
+
+.slide {
+  animation: slide 0.6s ease;
+}
+@keyframes slide {
+  0% { height: 80px; }
+  50% { height: 40px; }
+  100% { height: 80px; }
+}
+/* Pause background when game ends */
+#game.paused {
+  animation-play-state: paused;
+}
