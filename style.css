@@ -29,6 +29,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
+/* Pause background when game ends */
+#game.paused {
+  animation-play-state: paused;
+}
+
 
 body {
   margin: 0;
