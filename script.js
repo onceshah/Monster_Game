@@ -27,6 +27,9 @@ function resetPositions() {
 
   document.querySelectorAll(".obstacle").forEach(o => o.remove());
 
+  // remove pause
+  game.classList.remove("paused");
+
   // Reset random fumble (between 30–60s)
   if (fumbleTimeout) clearTimeout(fumbleTimeout);
   let fumbleTime = 30000 + Math.random() * 30000;
@@ -37,6 +40,7 @@ function resetPositions() {
 function runnerFumble() {
   if (!gameOver) {
     gameOver = true;
+    game.classList.add("paused"); // stop road
     message.innerText = "🏆 You Win! Runner stumbled on its own!";
     restartBtn.style.display = "block";
   }
@@ -74,7 +78,7 @@ function spawnObstacle(lane, type) {
     let top = parseInt(obs.style.top);
     obs.style.top = (top + 5) + "px";
 
-    // Runner vs obstacle
+    // Runner vs obstacle (auto AI reacts here)
     if (top > 400 && top < 460 && lane === runnerLane && !gameOver) {
       if (type === "jump-only" || type === "jump-or-slide") {
         runner.classList.add("jump");
@@ -91,6 +95,7 @@ function spawnObstacle(lane, type) {
       if (type === "jump-only" || type === "jump-or-slide") {
         if (!monster.classList.contains("jumping")) {
           gameOver = true;
+          game.classList.add("paused"); // stop road
           message.innerText = "😢 You Lose! Monster hit an obstacle!";
           restartBtn.style.display = "block";
         }
@@ -98,6 +103,7 @@ function spawnObstacle(lane, type) {
       if (type === "slide-only") {
         if (!monster.classList.contains("sliding")) {
           gameOver = true;
+          game.classList.add("paused"); // stop road
           message.innerText = "😢 You Lose! Monster hit a bar!";
           restartBtn.style.display = "block";
         }
